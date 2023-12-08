@@ -1,0 +1,27 @@
+public static void miniMaxSum(List<Integer> arr) {
+    // Write your code here
+    long sum = 0;
+    long maxi = 0;
+    long mini = Long.MAX_VALUE;
+    
+    for (int i = 0; i < arr.size(); i++) {
+        int ignore = i;
+        for(int j = 0; j < arr.size(); j++) {
+            if (j != ignore) {
+                sum += arr.get(j);
+            }
+        }
+        if (sum > maxi) {
+            maxi = sum;
+        }
+        
+        if (sum < mini) {
+            mini = sum;
+        }
+        
+        sum = 0;
+    }
+    
+    System.out.print(mini + " " + maxi);
+
+    }
