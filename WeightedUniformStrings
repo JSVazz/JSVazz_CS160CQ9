@@ -1,0 +1,43 @@
+    public static List<String> weightedUniformStrings(String s, List<Integer> queries) {
+    // Write your code here
+        List<String> response = new ArrayList<String>(queries.size());
+        List<Integer> elements = new ArrayList<Integer>();
+        String alphabet = "abcdefghijklmnopqrstuvwxyz";
+            HashMap<Character, Integer> weights = new HashMap<Character, Integer>();
+        
+        
+        for (int let = 1; let < 27; let++){
+            weights.put(alphabet.charAt(let - 1), let);
+        }
+        
+        int repeat = weights.get(s.charAt(0));
+        elements.add(repeat);
+        
+        
+        for (int i = 1; i < s.length(); i++) {
+            char current = s.charAt(i);
+            char prior = s.charAt(i - 1);
+            
+            if (current == prior) {
+                repeat += weights.get(current);
+                elements.add(repeat);
+            } 
+            else {
+                repeat = weights.get(current);
+                elements.add(repeat);
+            }
+        }
+        
+        for (int x = 0; x < queries.size(); x++){
+            if (elements.contains(queries.get(x))){
+                response.add("Yes");
+            }
+            else{
+                response.add("No");
+            }
+
+        }
+        
+        return response;  
+    }
+}
